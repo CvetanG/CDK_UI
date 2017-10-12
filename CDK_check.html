@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CDK Test</title>
+	<link rel="stylesheet" type="text/css" href="my_styles.css">
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="myScript.js"></script> 
+</head>
+<body>
+	<div id="center">
+		<!--htt p://172.31.10.117:7780/dataservices/cdk?SP=md_adm.log_off ('mySID', ?, ?int status)
+		<p>
+			<a href="http://172.31.10.117:7780/dataservices/cdk?SP=md_adm.login_with_session('su','su','mySID',?int status)">Login</a>
+		</p> -->
+		<p>
+	<fieldset>
+			<legend>Login</legend>
+			<table>
+				<tr><td>Domain:</td>
+					<td><input type="text" id="myDomain" placeholder="Enter Domain Name" onchange="myFunction('myDomain', 'pResult')" class="loginField"/></td>
+					<td><p id="pResult"></p></td>
+				</tr>
+				<tr><td>Account:</td>
+					<td><input type="text" id="myAccount" placeholder="Enter Account ID" onchange="myFunction('myAccount', 'pResult')" class="loginField"/></td>
+					<td><p id="pResult"></p></td>
+				</tr>
+				<tr><td>Pass:</td>
+					<td><input type="text" id="myPass" placeholder="Enter Password" onchange="myFunction('myPass', 'pPass')" class="loginField"/></td>
+					<td><p id="pPass"></p></td>
+				</tr>
+				<tr><td>Session:</td>
+					<td><input type="text" id="mySess" placeholder="Enter Session ID" onchange="myFunction('mySess', 'pSess')" class="loginField"/></td>
+					<td><p id="pSess"></p></td>
+				</tr>
+			</table>
+			<a href="/dataservices/cdk?SP=md_adm.login_with_session({0},{1},{2},?int status)" id="loginLink" onclick="myLogin();">Login</a>
+			<br/>
+			<a href="/dataservices/cdk?SP=md_adm.log_off ({0}, ?, ?int status)" id="logoffLink" onclick="myLogoff();">Logoff</a>
+		</fieldset>
+		</p>
+		<p>
+			<form action="domain_name" method="get">
+				<fieldset>
+					<legend>CDK Getting Started</legend>
+					<!-- <p>CDK:</p> -->
+					<!-- <input type="hidden" name="SP" value="md_adm.login_with_session('su','su','mySID',?int status)">
+					<br>
+					<input type="submit" value="Login"> -->
+
+
+					<a href="domain_name/dataservices/cdk?SP=md_adm.login_with_session('su','su','mySID',?int status)">Login</a>
+					<br>
+					<a href="domain_name/dataservices/cdk?SP=md_adm.log_off ('mySID', ?, ?int status)">Logoff</a>
+					<br>
+
+					<a href="" id="cookieLogin" onclick="cookieLogin()">Cookie_Login</a>
+					<br>
+					<a href="" id="cookieLogoff" onclick="cookieLogoff()">Cookie_Logoff</a>
+					<br>
+					<a href="" onclick="deleteCookies()">Clear_cookies</a>
+					<br>
+					
+					<p>Account:</p>
+					<input type="text" id="myAccount" placeholder="Enter Account ID" onchange="myFunction('myAccount', 'aResult')">
+					<p> Account:</p>
+					
+
+					<p>SessionId:</p>
+					<input type="text" id="suffix" value="" onchange="document.getElementById('suffix').value=$(this)document.location.href;" >
+					<br>
+					<a href="http://172.31.10.117:7780/dataservices/cdk?SP=md_adm." onclick="$(this)document.location.href = $(this).attr('href') + '11' + $('#suffix').val() + ",?int status)"; return false;">New login</a>
+				</fieldset>
+			</form>
+		</p>
+		<p>	
+				<fieldset>
+				<legend>Create Service Package 02</legend>
+					Service Package
+					<input type="text" id="cspVar1" class="cspCustomField" value="SDKSrvPkgCgg"/>
+					<br>
+					Service Package Description
+					<input type="text" id="cspVar2" class="cspCustomField" value="SDK
+EverythingSrvpkg"/>
+					<br>
+					Service Package Price
+					<input type="text" id="cspVar3" class="cspCustomField" value="35.99"/>
+					<br>
+					Service Package Effective Date
+					<input type="text" id="cspVar4" class="cspCustomField" value="08/22/2017"/>
+					<br>
+					<a href="/dataservices/cdk?SP=md__cdk.create_service_package({0},{1},{2},{3},{4},'','','','','',?int status)" id="cspDynLink" onclick="create_service_package()">create_service_package</a>
+				</fieldset>
+		</p>
+
+
+
+
+		<p>	
+			<form action="domain_name/dataservices/cdk" method="get">
+				<fieldset>
+				<legend>Get Service Package</legend>
+					<input type="text" name="SP" value="md_srv.get_services('mySID','',?,?,?,?,?,?,?,?int status)">
+					<br>
+					<input type="submit" value="get_services">
+				</fieldset>
+			</form>
+			<form action="domain_name/dataservices/cdk" method="get">
+				<fieldset>
+				<legend>Create Service Package</legend>
+					<input type="text" name="SP" value="md_cdk.create_service_package('mySID','SDKSrvPkgCgg','SDK
+EverythingSrvpkg','35.99','08/22/2017','','','','','',?int status)">
+					<br>
+					<input type="submit" value="create_service_package">
+				</fieldset>
+			</form>
+
+			<form action="domain_name/dataservices/cdk" method="get">
+				<fieldset>
+				<legend>Get Service Package Info</legend>
+					<input type="text" name="SP" value="md_srv.get_service_package_info('mySID','3',?,?,?,?,?,?,
+?int status)">
+					<br>
+					<input type="submit" value="get_service_package_info">
+				</fieldset>
+			</form>
+
+			<form action="domain_name/dataservices/cdk" method="get">
+				<fieldset>
+				<legend>Delete Service Package</legend>
+					<input type="text" name="SP" value="md_srv.del_service_pkg('mySID','2000',?int status)">
+					<br>
+					<input type="submit" value="del_service_pkg">
+				</fieldset>
+			</form>
+		</p>
+		
+		<p>
+		<fieldset>
+			<legend>Login</legend>
+			<table>
+				<tr><td>Account:</td>
+					<td><input type="text" id="var1" class="jsCustomField"/></td>
+				</tr>
+				<tr><td>Pass:</td>
+					<td><input type="text" id="var2" class="jsCustomField"/></td>
+				</tr>
+				<tr><td>Session:</td>
+					<td><input type="text" id="var3" class="jsCustomField"/></td>
+				</tr>
+			</table>
+			<a href="/dataservices/cdk?SP=md_adm.login_with_session({0},{1},{2},?int status)" id="dynLink" onclick="createLink();">Login</a>
+		</fieldset>
+
+		<fieldset>
+			<legend>Login_02</legend>
+			<table>
+				<tr><td>Account:</td>
+					<td><input type="text" id="var21" class="jsCustomField2"/></td>
+				</tr>
+				<tr><td>Pass:</td>
+					<td><input type="text" id="var22" class="jsCustomField2"/></td>
+				</tr>
+				<tr><td>Session:</td>
+					<td><input type="text" id="var23" class="jsCustomField2"/></td>
+				</tr>
+			</table>
+			<a href="/dataservices/cdk?SP=md_adm.login_with_session({0},{1},{2},?int status)" id="dynLink2" onclick="createLinkPar(jsCustomField2, dynLink2, var2, 3);">Login</a>
+		</fieldset>
+		</p>
+
+		<p>	
+			<form action="domain_name/dataservices/cdk" method="get">
+				<fieldset>
+				<legend>Customers</legend>
+					<!-- <p>CDK:</p>
+					<input type="text" name="SP" value="md_cst.get_customer_services('mySID','AUT10000',?,?int status)">
+					<br>
+					<input type="submit" value="get_customer_services">
+					</fieldset>
+			</form>
+		</p>
+		<p>
+			<form action="domain_name/xtv-ws-client/api/logger/config/clearlogfilters" method="get">
+				<fieldset>
+					<legend>Clear Filter from the Root Logger:</legend>
+					<br>
+					<input type="submit" value="Clear">
+				</fieldset>
+			</form>
+		</p>
+		<p>
+			<!-- <form action="domain_name/xtv-ws-client/api/logger/config/setloglevel?loggername=loggername&level=level" method="get"> -->
+			<form action="domain_name/xtv-ws-client/api/logger/config/setloglevel?level=level" method="get">
+				<fieldset>
+					<legend>Set Logging Level to a Logger:</legend>
+				<p>Logger Name:</p>
+				<p style="color: grey; font-size: 0.7em;">/select from dropdown or enter Logger in input text field bellow/</p>
+				<select onchange="document.getElementById('loggername').value=this.options[this.selectedIndex].text; document.getElementById('idValue').value=this.options[this.selectedIndex].value;">
+					<option></option>
+					<option value="org.apache.log4j.xml">org.apache.log4j.xml</option>
+					<option value="com.minervanetworks.xtv">com.minervanetworks.xtv</option>
+					<option value="com.minerva.xtv.recommendation">com.minerva.xtv.recommendation</option>
+					<option value="org.apache.cxf.interceptor.LoggingInInterceptor">org.apache.cxf.interceptor.LoggingInInterceptor</option>
+					<option value="org.apache.cxf.interceptor.LoggingOutInterceptor">org.apache.cxf.interceptor.LoggingOutInterceptor</option>
+					<option value="org.springframework">org.springframework</option>
+					<option value="org.apache.cxf">org.apache.cxf</option>
+					<option value="org.springframework.jdbc.core">org.springframework.jdbc.core</option>
+				</select>
+				<br>
+				<br>
+				<input name="loggername" placeholder="enter logger" id="loggername" onfocus="this.select()" type="text">
+				<input id="loggername" type="hidden">
+
+				<br>
+				<br>
+				<p>Logging Level:</p>
+				<select name="level">
+					<option value="trace">TRACE</option>
+					<option value="debug">DEBUG</option>
+					<option value="info">INFO</option>
+					<option value="warn">WARN</option>
+					<option value="error">ERROR</option>
+					<option value="fatal">FATAL</option>
+				</select> 
+				<br>
+				<br>
+				<input type="submit" value="Set">
+				</fieldset>
+			</form>
+		</p>
+		<p>
+			<form action="domain_name/xtv-ws-client/api/logger/config/testlog" method="get">
+				<fieldset>
+					<legend>Test Logging Level:</legend>
+					<input type="submit" value="Run">
+				</fieldset>
+			</form>
+		</p>
+	</div>
+</body>
+</html>

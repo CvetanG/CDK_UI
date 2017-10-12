@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CDK Test</title>
+	<link rel="stylesheet" type="text/css" href="my_styles.css">
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="myScript.js"></script>
+	<script type="text/javascript" src="cdks.js"></script>
+	<script >
+		$(document).ready(function () {
+			createCDKFieldset();
+		});
+	</script>
+</head>
+<body>
+	<div id="center">
+		<p>
+			<form action="" method="get">
+				<fieldset>
+					<legend>CDK Getting Started</legend>
+
+					<a href="" id="cookieLogin" onclick="cookieLogin()">Cookie_Login</a>
+					<br>
+					<a href="" id="cookieLogoff" onclick="cookieLogoff()">Cookie_Logoff</a>
+					<br>
+					<a href="" onclick="deleteCookies()">Clear_cookies</a>
+					<br>
+				</fieldset>
+			</form>
+		</p>
+		<p>	
+			<form action= "javascript:myAction()" method="get" id="pasteGo">
+				<fieldset>
+				<legend>Paste & Go CDK</legend>
+					<textarea rows="2" cols="60" name="SP" id="pasteCDK" >md_srv.get_services('mySID','',?,?,?,?,?,?,?,?int status)
+					</textarea>
+					<br>
+					<br>
+					<input type="submit" value="Paste & Go">
+					<p>create history of last ten</p>
+				</fieldset>
+			</form>
+		<!-- <p>
+			<form action="" method="get">
+				<fieldset>
+					<legend>CDK Device Management</legend>
+
+					<a href="" id="cookieLogin" onclick="cookieLogin()">Add_Device</a>
+					<br>
+					<a href="" id="cookieLogoff" onclick="cookieLogoff()">Assign_Device</a>
+					<br>
+					<a href="" onclick="deleteCookies()">Delete_Device</a>
+					<br>
+					<a href="" onclick="deleteCookies()">Edit_Device</a>
+					<br>
+					<a href="" onclick="deleteCookies()">Get_Device_Info</a>
+					<br>
+					<a href="" onclick="deleteCookies()">Get_Device_List</a>
+					<br>
+					<a href="" onclick="deleteCookies()">Get_Registration_Number</a>
+					<br>
+					<a href="" onclick="deleteCookies()">Get_Unassigned_Devices</a>
+					<br>
+					<a href="" onclick="deleteCookies()">Set_CallerID_For_Device</a>
+					<br>
+					<a href="" onclick="deleteCookies()">Set_Skin_For_Device</a>
+					<br>
+					<a href="" onclick="deleteCookies()">Schedule_To_Reboot</a>
+					<br>
+					<a href="" onclick="deleteCookies()">Unassign_Device</a>
+					<br>
+					
+				</fieldset>
+			</form>
+		</p> -->
+		<p id="cdkForms">	
+		</p>
+		<!-- <p>	
+			<fieldset>
+			<legend>Service Package</legend>
+				<a href="form.html" target="_blank" onclick="cdkCookies(this.innerHTML, this.getAttribute('data-link'))" data-link="Service Package">Create Service Package</a>
+				<br>
+				<a href="form.html" target="_blank" onclick="cdkCookies(this.innerHTML, this.getAttribute('data-link'))" data-link="Service Package">Delete Service Package</a>
+			</fieldset>
+		</p> -->
+	</div>
+	<!-- <div id="myDiv"></div> -->
+</body>
+</html>

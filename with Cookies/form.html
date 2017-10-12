@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CDK Form</title>
+    <link rel="stylesheet" type="text/css" href="my_styles.css">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="myScript.js"></script>
+    <script type="text/javascript" src="cdks.js"></script>
+    <script>
+        $(document).ready(function () {
+            var cdkName = getCookie("cdkName");
+            var cdkPackage = getCookie("cdkPackage");
+            if (cdkName != null && cdkPackage != null) {
+                createPopup(cdkName, cdkPackage);
+            };
+        });
+
+        $(function runCDK(inputLenght) {
+        var $dynLink = $("#runCDKLink");
+        var cdkLink = $dynLink.attr("href");
+            $(".cdkTextInput").on("change", function() {
+                var tempLink = cdkLink;
+                var i = 0;
+                while (i < 10) {
+                    if ($("#inVar"+ i ).val() != "") {
+                        tempLink = tempLink.replace("{" + i + "}", $("#inVar"+ i ).val());
+                    };
+                    i++;
+                };
+                $dynLink.attr("href", tempLink);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="center">
+         <fieldset id="myFieldset">
+            Fill empty fields with:
+            <input type="radio" name="fillWith" value="Quotation"> Quotation Mark (?)
+            <input type="radio" name="fillWith" value="Queston"> Single Queston ('')
+        </fielset>
+    </div>
+
+</body>
+</html>
