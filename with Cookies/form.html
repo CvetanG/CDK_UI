@@ -16,19 +16,24 @@
             };
         });
 
-        $(function runCDK(inputLenght) {
-        var $dynLink = $("#runCDKLink");
-        var cdkLink = $dynLink.attr("href");
-            $(".cdkTextInput").on("change", function() {
-                var tempLink = cdkLink;
-                var i = 0;
-                while (i < 10) {
-                    if ($("#inVar"+ i ).val() != "") {
-                        tempLink = tempLink.replace("{" + i + "}", $("#inVar"+ i ).val());
+        $(function runCDK() {
+            var $dynLink = $("#runCDKLink");
+            var cdkLink = $dynLink.attr("href");
+            var myIntTemp = $("#runCDKLink").attr('onclick').split('\(');
+            var myInt = parseInt(myIntTemp[1]);
+                $(".cdkTextInput").on("change", function() {
+                    var tempLink = cdkLink;
+                    var i = 0;
+                    var fillWith = $('input[name=fillWith]:checked').val();
+                    while (i < myInt) {
+                        if ($("#inVar"+ i ).val() != "") {
+                            tempLink = tempLink.replace("{" + i + "}", $("#inVar"+ i ).val());
+                        } else if (fillWith != null) {
+                            tempLink = tempLink.replace("{" + i + "}", fillWith);
+                        };
+                        i++;
                     };
-                    i++;
-                };
-                $dynLink.attr("href", tempLink);
+                    $dynLink.attr("href", tempLink);
             });
         });
     </script>
@@ -37,8 +42,10 @@
     <div id="center">
          <fieldset id="myFieldset">
             Fill empty fields with:
-            <input type="radio" name="fillWith" value="Quotation"> Quotation Mark (?)
-            <input type="radio" name="fillWith" value="Queston"> Single Queston ('')
+            <input type="radio" name="fillWith" value="?"> Queston Mark (?)
+            <input type="radio" name="fillWith" value="''"> Single Quotation ('')
+            <br>
+            <br>
         </fielset>
     </div>
 

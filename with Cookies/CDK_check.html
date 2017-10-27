@@ -30,7 +30,7 @@
 			</form>
 		</p>
 		<p>	
-			<form action= "javascript:myAction()" method="get" id="pasteGo">
+			<form action= "javascript:pasteGo()" method="get" id="pasteGo">
 				<fieldset>
 				<legend>Paste & Go CDK</legend>
 					<textarea rows="2" cols="60" name="SP" id="pasteCDK" >md_srv.get_services('mySID','',?,?,?,?,?,?,?,?int status)
@@ -38,7 +38,7 @@
 					<br>
 					<br>
 					<input type="submit" value="Paste & Go">
-					<p>create history of last ten</p>
+					<div id="history"></div>
 				</fieldset>
 			</form>
 		<!-- <p>

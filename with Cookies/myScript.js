@@ -4,15 +4,32 @@ var myAccount;
 var myPass;
 var mySess;
 var cdkArray;
-	
+
+var texts = [];
+
 	$(document).ready(function () {
 		checkCookie();
 		cookiesToVar();
+		insertHistory();
 	});
 
-	$(function myAction() {
+	$(function pasteGo() {
 		$('#pasteGo').on('submit', function() {
-		    // var cdk = $('#pasteCDK').val();
+			var temp = [];
+			if (getCookie("history") != "") {
+				temp = getCookie("history").split('\),');
+				if (temp.length > 10){
+					temp.shift();
+				}
+				for (var i = 0; (i < temp.length - 1); i++) {
+					temp[i] = temp[i] + '\)';
+				}
+			};
+			var newItem = $('#pasteCDK').val().replace(/\s+$/g, "");;
+			if (temp.indexOf(newItem) === -1) {
+				temp.push(newItem);
+			};
+			setCookie("history", temp);
 		    // var formAction = $('#pasteGo').attr('action');
 		    $('#pasteGo').attr('action', domain_name + '/dataservices/cdk?');
 		});
@@ -76,9 +93,9 @@ var cdkArray;
 
 	function checkCookie() {
 		promptCookie("username", true);
-		promptCookie("domain", false);
 		promptCookie("password", false);
 		promptCookie("session", false);
+		promptCookie("domain", false);
 	}
 
 	function cdkCookies(cdkName, cdkPackage) {
@@ -104,6 +121,32 @@ var cdkArray;
 	}
 	// end cookies
 	
+	function insertHistory(){
+		if (getCookie("history") != "") {
+			texts.push(getCookie("history").split('\),'));
+		};
+		var history = document.getElementById("history");
+		if (history != null) {
+			if (texts.length == 0) {
+				var p = document.createElement("p");
+				var pText = document.createTextNode("No History");
+				p.appendChild(pText);
+				history.appendChild(p);
+			} else {
+				for (var i = 0; i < texts[0].length -1; i++) {
+					var linkName = texts[0][i] + '\)';
+
+					var link = document.createElement("a");
+					link.href = domain_name + linkName;
+					link.innerHTML = linkName;
+
+					var br = document.createElement("br");
+			    	history.appendChild(br);
+			    	history.appendChild(link);
+				};
+			};
+		}
+	}
 
 	function createPopup(cdkName, cdkPackage) {
 		var res = cdkName.toLowerCase();
